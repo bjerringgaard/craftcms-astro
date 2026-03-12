@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { craftClient } from '../lib/graphql';
+import { getPreviewStatus, PreviewScript } from '../lib/preview';
+import { HOME_QUERY } from '../queries/home.mjs';
+
+const preview = getPreviewStatus(Astro.url);
+
+const data = await craftClient.query(HOME_QUERY, {}, {
+  previewToken: preview.token
+});
+
+const entry = data?.entry;
+const siteName = import.meta.env.SITE_NAME || 'Site';
+const pageTitle = entry?.title ? `${entry.title} | ${siteName}` : siteName;
+---
+
+<Layout title={pageTitle}>
+  <main>
+    {entry?.image?.[0] && (
+      <figure>
+        <img src={entry.image[0].url} alt={entry.image[0].alt} />
+      </figure>
+    )}
+
+    <div class="container mx-auto pt-12 pb-6 px-2 text-2xl">
+      <h1 class="font-bold text-4xl sm:text-6xl lg:text-9xl">{entry?.title}</h1>
+      {entry?.pageSubheading && (
+        <p class="mt-4">{entry.pageSubheading}</p>
+      )}
+    </div>
+
+    {entry?.pageContent && (
+      <div 
+        class="container mx-auto py-12 px-2 prose prose-slate lg:prose-xl"
+        set:html={entry.pageContent}
+      />
+    )}
+  </main>
+</Layout>
+
+<Fragment set:html={PreviewScript({ isPreview: preview.isPreview })} />

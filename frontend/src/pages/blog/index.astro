@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { craftClient } from '../../lib/graphql';
+import { getPreviewStatus, PreviewScript } from '../../lib/preview';
+import { BLOG_QUERY } from '../../queries/blog.mjs';
+import { getPaginationData } from '../../lib/pagination';
+import Pagination from '../../components/Pagination.astro';
+import Teaser from '../../components/Teaser.astro';
+
+const preview = getPreviewStatus(Astro.url);
+const currentPage = parseInt(Astro.url.searchParams.get('page') || '') || 1;
+const itemsPerPage = 4;
+
+const data = await craftClient.query(BLOG_QUERY, {
+  limit: itemsPerPage,
+  offset: (currentPage - 1) * itemsPerPage
+}, {
+  previewToken: preview.token
+});
+
+const blogPage = data?.blogEntries?.[0];
+const posts = data?.blogPostsEntries || [];
+const totalPosts = data?.entryCount || 0;
+const { totalPages } = getPaginationData(currentPage, totalPosts, itemsPerPage);
+
+const pageTitle = totalPages > 1 
+  ? `${blogPage?.title || 'Blog'} - Page ${currentPage} of ${totalPages}`
+  : blogPage?.title || 'Blog';
+---
+
+<Layout title={pageTitle}>
+  <main class="container mx-auto px-4 py-8">
+    {blogPage && (
+      <header class="container mx-auto pt-12 pb-6 px-2 text-2xl">
+        <h1 class="font-bold text-4xl sm:text-6xl lg:text-9xl">{blogPage.title}</h1>
+        {blogPage.pageSubheading && (
+          <p class="text-xl text-gray-600 mb-4">{blogPage.pageSubheading}</p>
+        )}
+      </header>
+    )}
+    {blogPage.pageContent && (
+    <section class="page__content">
+      <div class="prose container mx-auto py-12 px-2 text-balance" set:html={blogPage.pageContent} />
+    </section>
+    )}
+    <section class="container mx-auto mb-6 px-2 divide-y divide-slate-300">
+      {posts.length > 0 ? (
+        <div class="sm:grid sm:grid-cols-2 sm:gap-6">
+          {posts.map((post: any, index: any) => (
+            <Teaser 
+              entry={post}
+              featured={index === 0 && currentPage === 1}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="text-center text-gray-600 py-12">
+          No posts found
+        </div>
+      )}
+      {totalPages > 1 && (
+        <Pagination 
+          currentPage={currentPage}
+          totalPages={totalPages}
+        />
+      )}
+    </section>
+  </main>
+</Layout>
+
+<Fragment set:html={PreviewScript({ isPreview: preview.isPreview })} />

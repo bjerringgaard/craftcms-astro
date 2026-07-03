@@ -1,0 +1,11 @@
+**/mjml
+**/config/project
+**/node_modules
+**/cpresources
+**/vendor
+**/build
+**/dist
+.git
+
+CHANGELOG.md
+README.md

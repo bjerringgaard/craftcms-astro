@@ -1,4 +1,5 @@
 <?php
+
 /**
  * General Configuration
  *
@@ -9,7 +10,6 @@
  */
 
 use craft\config\GeneralConfig;
-use craft\helpers\App;
 
 return GeneralConfig::create()
     // Set the default week start day for date pickers (0 = Sunday, 1 = Monday, etc.)
@@ -20,6 +20,7 @@ return GeneralConfig::create()
     ->preloadSingles()
     // Prevent user enumeration attacks
     ->preventUserEnumeration()
+    ->useEmailAsUsername(true)
     // Set the @webroot alias so the clear-caches command knows where to find CP resources
     ->aliases([
         '@webroot' => dirname(__DIR__) . '/web',

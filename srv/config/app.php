@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Yii Application Config
  *
@@ -25,7 +26,7 @@ use craft\helpers\App;
 return [
     'id' => App::env('CRAFT_APP_ID') ?: 'CraftCMS',
     'modules' => [
-        'authorinfo' => modules\authorinfo\Module::class,
+        'authorinfo' => QD\authorinfo\Module::class,
     ],
     'bootstrap' => ['authorinfo'],
 ];

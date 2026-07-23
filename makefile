@@ -8,7 +8,7 @@ update:
 	ddev craft update all --interactive=0 --backup=0
 
 release:
-	npx commit-and-tag-version \
+	npx commit-and-tag-version; \
   git push
 
 env:

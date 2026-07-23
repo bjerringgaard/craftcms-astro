@@ -1,5 +1,6 @@
 <?php
-namespace modules\authorinfo;
+
+namespace QD\authorinfo;
 
 use Craft;
 use craft\elements\User;
@@ -21,7 +22,7 @@ class Module extends \yii\base\Module
     {
         parent::init();
         self::$instance = $this;
-        
+
         Event::on(
             TypeManager::class,
             TypeManager::EVENT_DEFINE_GQL_TYPE_FIELDS,
@@ -67,7 +68,7 @@ class Module extends \yii\base\Module
             'name' => 'authorId',
             'type' => Type::int(),
             'description' => 'The entry author\'s ID',
-            'resolve' => function($source) {
+            'resolve' => function ($source) {
                 try {
                     if ($source->getSection()->type === 'single') {
                         return $this->getAdminUser()?->id;
@@ -84,7 +85,7 @@ class Module extends \yii\base\Module
             'name' => 'authorName',
             'type' => Type::string(),
             'description' => 'The entry author\'s name',
-            'resolve' => function($source) {
+            'resolve' => function ($source) {
                 try {
                     if ($source->getSection()->type === 'single') {
                         return $this->getAdminUser()?->fullName;

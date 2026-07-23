@@ -65,7 +65,7 @@ Run `ddev launch` to open the front end in your default browser, or visit `https
 
 ### Control Panel
 
-The Craft [control panel](https://craftcms.com/docs/5.x/system/control-panel.html) is available at `https://api.mbjg.ddev.site/admin`. Log in with the username and password you created during installation!
+The Craft [control panel](https://craftcms.com/docs/5.x/system/control-panel.html) is available at `https://admin.mbjg.ddev.site/admin`. Log in with the username and password you created during installation!
 
 ## Key Features
 
@@ -120,7 +120,7 @@ If you want to compress the GraphQL query feedback loop, open up the Craft contr
 The DDEV configuration files shipped with this project use a specific pair of URLs for the Astro front end and Craft back end:
 
 - **Front end**: `https://mbjg.ddev.site`
-- **Back end**: `https://api.mbjg.ddev.com`
+- **Back end**: `https://admin.mbjg.ddev.com`
 
 If you would like to use different URLs, you must make a few changes in `.ddev/config.yaml`:
 

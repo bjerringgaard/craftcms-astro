@@ -1,8 +1,0 @@
-{
-	"name": "craftcms-astro",
-	"private": true,
-	"version": "0.0.0",
-	"scripts": {
-		"deploy": "sh .utils/deploy.sh"
-	}
-}

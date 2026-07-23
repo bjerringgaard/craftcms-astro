@@ -1,19 +1,24 @@
 name: mbjg
 type: craftcms
-docroot: backend/web
-php_version: "8.2"
+docroot: srv/web
+php_version: "8.5"
 nodejs_version: "20"
 webserver_type: nginx-fpm
-composer_root: backend
+composer_root: srv
 xdebug_enabled: false
 additional_hostnames:
-  - api.mbjg
+  - admin.mbjg
 database:
   type: mysql
   version: "8.0"
 use_dns_when_possible: true
 composer_version: "2"
 corepack_enable: false
+hooks:
+  post-stop:
+    - exec-host: make purge
+  pre-start:
+    - exec-host: make env
 upload_dirs:
   - uploads
 web_extra_exposed_ports:
@@ -22,9 +27,9 @@ web_extra_exposed_ports:
     http_port: 4321
     https_port: 4322
 web_environment:
-  - VIRTUAL_HOST=api.mbjg.ddev.site,mbjg.ddev.site
-  - CRAFT_CMD_ROOT=/var/www/html/backend
+  - VIRTUAL_HOST=admin.mbjg.ddev.site,mbjg.ddev.site
+  - CRAFT_CMD_ROOT=/var/www/html/srv
 web_extra_daemons:
   - name: "astro"
-    command: "cd /var/www/html/frontend && npm run dev -- --host"
-    directory: "/var/www/html/frontend"
+    command: "cd /var/www/html/src && npm run dev -- --host"
+    directory: "/var/www/html/src"

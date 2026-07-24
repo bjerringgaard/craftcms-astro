@@ -1,2 +1,21 @@
-/.DS_Store
+# SYSTEM
+.DS_Store
+Thumbs.db
+
+**/node_modules
+**/vendor
+
+# CMS
+.env
+backend/storage
+backend/web/cpresources
+backend/web/files
+backend/web/dist
+
+*.sql
+**/*.sql
+*.sql.gz
+**/*.sql.gz
+
 *.log
+**/.log

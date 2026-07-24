@@ -3,10 +3,10 @@ import re
 import shutil
 
 # Directory where PHP files are located
-php_directory = "src/modules"
+php_directory = "frontend/modules"
 
 # Output directory for TypeScript files
-output_directory = "src/vue/@types/backend"
+output_directory = "frontend/vue/@types/backend"
 
 # Regular expression to match PHP class definitions (captures optional parent class name)
 class_pattern = r'class\s+(\w+)\s*(?:extends\s+(\w+)\s*)?\{([^}]*)\}'
@@ -47,7 +47,7 @@ name_map = {}
 
 
 def _get_module_name(file_path):
-    """Extract the module name from a file path like src/modules/<module>/..."""
+    """Extract the module name from a file path like frontend/modules/<module>/..."""
     rel = os.path.relpath(file_path, php_directory)
     return rel.split(os.sep)[0].capitalize()
 

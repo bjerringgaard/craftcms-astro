@@ -1,6 +1,6 @@
 name: mbjg
 type: craftcms
-docroot: srv/web
+docroot: backend/web
 php_version: "8.5"
 nodejs_version: "20"
 webserver_type: nginx-fpm

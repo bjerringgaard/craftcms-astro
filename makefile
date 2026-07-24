@@ -12,8 +12,8 @@ release:
   git push
 
 env:
-	op inject -f -i .env.tpl -o src/.env; \
-	op inject -f -i .env.tpl -o srv/.env; \
+	op inject -f -i .env.tpl -o frontend/.env; \
+	op inject -f -i .env.tpl -o backend/.env; \
 	op inject -f -i .env.tpl -o bruno/.env
 
 setup:

@@ -1,0 +1,61 @@
+{
+	"name": "craftcms/craft",
+	"description": "Craft CMS",
+	"keywords": [
+		"craft",
+		"cms",
+		"craftcms",
+		"project"
+	],
+	"license": "0BSD",
+	"homepage": "https://craftcms.com/",
+	"type": "project",
+	"support": {
+		"email": "support@craftcms.com",
+		"issues": "https://github.com/craftcms/cms/issues",
+		"forum": "https://craftcms.stackexchange.com/",
+		"source": "https://github.com/craftcms/cms",
+		"docs": "https://craftcms.com/docs",
+		"rss": "https://craftcms.com/changelog.rss"
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true,
+	"require": {
+		"craftcms/ckeditor": "^4.9.0",
+		"craftcms/cms": "^5.8",
+		"vlucas/phpdotenv": "^5.4"
+	},
+	"require-dev": {
+		"yiisoft/yii2-shell": "^2.0.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"QD\\": "modules/",
+			"srv\\": "."
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"craftcms/plugin-installer": true,
+			"yiisoft/yii2-composer": true
+		},
+		"sort-packages": true,
+		"optimize-autoloader": true,
+		"platform": {
+			"php": "8.2"
+		}
+	},
+	"scripts": {
+		"post-update-cmd": [
+			"@php craft up --interactive=0",
+			"@php craft clear-caches/all"
+		]
+	},
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer.craftcms.com",
+			"canonical": false
+		}
+	]
+}

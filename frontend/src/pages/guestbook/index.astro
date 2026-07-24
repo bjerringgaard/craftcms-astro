@@ -8,6 +8,8 @@ import { getPaginationData } from '../../lib/pagination';
 import Pagination from '../../components/Pagination.astro';
 import PostForm from '../../components/PostForm.vue';
 
+export const prerender = false;
+
 const preview = getPreviewStatus(Astro.url);
 const currentPage = parseInt(Astro.url.searchParams.get('page') || '') || 1;
 const itemsPerPage = 4;

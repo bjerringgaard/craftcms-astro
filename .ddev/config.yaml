@@ -2,9 +2,9 @@ name: mbjg
 type: craftcms
 docroot: backend/web
 php_version: "8.5"
-nodejs_version: "20"
+nodejs_version: "24"
 webserver_type: nginx-fpm
-composer_root: srv
+composer_root: backend
 xdebug_enabled: false
 additional_hostnames:
   - admin.mbjg
@@ -28,8 +28,8 @@ web_extra_exposed_ports:
     https_port: 4322
 web_environment:
   - VIRTUAL_HOST=admin.mbjg.ddev.site,mbjg.ddev.site
-  - CRAFT_CMD_ROOT=/var/www/html/srv
+  - CRAFT_CMD_ROOT=/var/www/html/backend
 web_extra_daemons:
   - name: "astro"
-    command: "cd /var/www/html/src && npm run dev -- --host"
-    directory: "/var/www/html/src"
+    command: "cd /var/www/html/frontend && npm run dev -- --host"
+    directory: "/var/www/html/frontend"

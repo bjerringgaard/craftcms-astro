@@ -2,8 +2,18 @@
 import Layout from '../../layouts/Layout.astro';
 import { craftClient } from '../../lib/graphql';
 import { getPreviewStatus, PreviewScript } from '../../lib/preview';
-import { BLOG_POSTS_QUERY } from '../../queries/blogPosts.mjs';
+import { BLOG_POST_PATHS_QUERY, BLOG_POSTS_QUERY } from '../../queries/blogPosts.mjs';
 import Teaser from '../../components/Teaser.astro';
+
+export async function getStaticPaths() {
+  const data = await craftClient.query(BLOG_POST_PATHS_QUERY);
+
+  return (data?.blogPostsEntries || [])
+    .filter((entry: any) => entry.slug)
+    .map((entry: any) => ({
+      params: { slug: entry.slug }
+    }));
+}
 
 const { slug } = Astro.params;
 const preview = getPreviewStatus(Astro.url);

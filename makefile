@@ -18,7 +18,7 @@ env:
 
 setup:
 	ddev composer install; \
-	ddev src npm install
+	ddev frontend npm install
 
 logs:
 	ddev logs -f

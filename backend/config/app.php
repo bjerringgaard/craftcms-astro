@@ -6,7 +6,7 @@
  * Edit this file at your own risk!
  *
  * The array returned by this file will get merged with
- * vendor/craftcms/cms/frontend/config/app.php and app.[web|console].php, when
+ * vendor/craftcms/cms/src/config/app.php and app.[web|console].php, when
  * Craft's bootstrap script is defining the configuration for the entire
  * application.
  *

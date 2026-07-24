@@ -18,4 +18,25 @@ backend/web/dist
 **/*.sql.gz
 
 *.log
-**/.log
+**/*.log
+
+# ASTRO
+
+# build output
+dist/
+**/dist/
+
+.astro/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+**/.idea
+backend/web/uploads
+
+**/*.swn
+**/*.swo
+**/*.swp

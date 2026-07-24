@@ -1,3 +1,13 @@
+export const BLOG_POST_PATHS_QUERY = `
+  query BlogPostPaths {
+    blogPostsEntries {
+      ... on page_Entry {
+        slug
+      }
+    }
+  }
+`
+
 export const BLOG_POSTS_QUERY = `
   query BlogPosts($slug: [String]) {
     blogPostsEntries(slug: $slug) {

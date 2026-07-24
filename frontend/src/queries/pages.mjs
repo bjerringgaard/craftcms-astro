@@ -1,3 +1,13 @@
+export const PAGE_PATHS_QUERY = `
+  query PagePaths {
+    pagesEntries {
+      ... on page_Entry {
+        uri
+      }
+    }
+  }
+`
+
 export const PAGE_QUERY = `
   query PageEntry($uri: [String]!) {
     entry(uri: $uri) {

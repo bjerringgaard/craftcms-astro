@@ -21,12 +21,12 @@
 	"minimum-stability": "dev",
 	"prefer-stable": true,
 	"require": {
-		"craftcms/ckeditor": "^4.9.0",
-		"craftcms/cms": "^5.8",
-		"vlucas/phpdotenv": "^5.4"
+		"craftcms/ckeditor": "^5.6.1",
+		"craftcms/cms": "^5.10.12",
+		"vlucas/phpdotenv": "^5.6.4"
 	},
 	"require-dev": {
-		"yiisoft/yii2-shell": "^2.0.3"
+		"yiisoft/yii2-shell": "^2.0.6"
 	},
 	"autoload": {
 		"psr-4": {

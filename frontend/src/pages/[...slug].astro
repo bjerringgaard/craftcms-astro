@@ -2,7 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import { craftClient } from '../lib/graphql';
 import { getPreviewStatus, PreviewScript } from '../lib/preview';
-import { PAGE_QUERY } from '../queries/pages.mjs';
+import { PAGE_PATHS_QUERY, PAGE_QUERY } from '../queries/pages.mjs';
+
+export async function getStaticPaths() {
+  const data = await craftClient.query(PAGE_PATHS_QUERY);
+
+  return (data?.pagesEntries || [])
+    .filter((entry: any) => entry.uri)
+    .map((entry: any) => ({
+      params: { slug: entry.uri }
+    }));
+}
 
 const { slug } = Astro.params;
 const uri = Array.isArray(slug) ? slug.join('/') : slug;
@@ -68,4 +78,4 @@ if (!entry) {
   </main>
 </Layout>
 
-<Fragment set:html={PreviewScript({ isPreview: preview.isPreview })} /> 
+<Fragment set:html={PreviewScript({ isPreview: preview.isPreview })} />

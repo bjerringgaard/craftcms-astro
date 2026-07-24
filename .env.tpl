@@ -1,4 +1,4 @@
-#* SRV
+#* BACKEND
 CRAFT_APP_ID="craftcms-astro"
 
 # The environment Craft is currently running in (dev, staging, production, etc.)
@@ -18,11 +18,13 @@ CRAFT_DEV_MODE=true
 CRAFT_ALLOW_ADMIN_CHANGES=true
 CRAFT_DISALLOW_ROBOTS=true
 CRAFT_BASE_CP_URL="https://admin.mbjg.ddev.site"
+CRAFT_CP_TRIGGER=""
 
 # Domain Configuration
 PRIMARY_SITE_URL="https://mbjg.ddev.site"
+PREVIEW_URL="https://mbjg.ddev.site/preview"
 
-#* SRC
+#* FRONTEND
 SITE_NAME="Craft CMS + Astro Starter"
 ENV="dev"
 BASE_URL="https://mbjg.ddev.site"

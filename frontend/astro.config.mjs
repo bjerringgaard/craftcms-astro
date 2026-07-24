@@ -10,7 +10,7 @@ const site = env.BASE_URL
 const siteUrl = new URL(site)
 
 export default defineConfig({
-	output: 'server',
+	output: 'static',
 	adapter: node({
 		mode: 'standalone',
 	}),
